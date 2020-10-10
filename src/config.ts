@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import Game from './scenes/Game';
+import Game from './scenes/game/Game';
 import Splash from './scenes/Splash';
 import GameOver from './scenes/GameOver';
 
