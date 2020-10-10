@@ -17,10 +17,8 @@ class Game extends Scene implements GameInterface {
 
   create(): void {
     this.player = new Player(this);
-  }
-
-  update(): void {
-
+    this.player.setCameraFollow();
+    this.player.keyInputs();
   }
 }
 
