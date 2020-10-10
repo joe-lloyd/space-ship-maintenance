@@ -15,7 +15,8 @@ class Player implements PlayerInterface {
     this.character = new Mage(scene, 50, 50);
     this.scene.add.existing(this.character);
     this.scene.physics.add.existing(this.character);
-    this.speed = 10;
+    this.character.setCollideWorldBounds(true);
+    this.speed = 500;
   }
 
   static preload(scene: GameInterface): void {
@@ -31,26 +32,38 @@ class Player implements PlayerInterface {
     this.scene.input.keyboard.on('keydown_RIGHT', this.moveRight, this);
     this.scene.input.keyboard.on('keydown_UP', this.moveUp, this);
     this.scene.input.keyboard.on('keydown_DOWN', this.moveDown, this);
+    this.scene.input.keyboard.on('keyup_LEFT', this.stopMovingX, this);
+    this.scene.input.keyboard.on('keyup_RIGHT', this.stopMovingX, this);
+    this.scene.input.keyboard.on('keyup_UP', this.stopMovingY, this);
+    this.scene.input.keyboard.on('keyup_DOWN', this.stopMovingY, this);
   }
 
   moveLeft = (): void => {
     this.character.setVelocityX(-this.speed);
-    console.log('moveLeft');
+    this.scene.tile.tilePositionX += this.speed;
   };
 
   moveRight = (): void => {
     this.character.setVelocityX(this.speed);
-    console.log('moveRight');
+    this.scene.tile.tilePositionX -= this.speed;
   };
 
   moveUp = (): void => {
     this.character.setVelocityY(-this.speed);
-    console.log('moveUp');
+    this.scene.tile.tilePositionY += this.speed;
   };
 
   moveDown = (): void => {
     this.character.setVelocityY(this.speed);
-    console.log('moveDown');
+    this.scene.tile.tilePositionY -= +this.speed;
+  };
+
+  stopMovingX = (): void => {
+    this.character.setVelocityX(0);
+  };
+
+  stopMovingY = (): void => {
+    this.character.setVelocityY(0);
   };
 }
 
