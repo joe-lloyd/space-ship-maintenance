@@ -40,22 +40,18 @@ class Player implements PlayerInterface {
 
   moveLeft = (): void => {
     this.character.setVelocityX(-this.speed);
-    this.scene.tile.tilePositionX += this.speed;
   };
 
   moveRight = (): void => {
     this.character.setVelocityX(this.speed);
-    this.scene.tile.tilePositionX -= this.speed;
   };
 
   moveUp = (): void => {
     this.character.setVelocityY(-this.speed);
-    this.scene.tile.tilePositionY += this.speed;
   };
 
   moveDown = (): void => {
     this.character.setVelocityY(this.speed);
-    this.scene.tile.tilePositionY -= +this.speed;
   };
 
   stopMovingX = (): void => {

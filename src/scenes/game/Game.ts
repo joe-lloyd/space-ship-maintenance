@@ -22,7 +22,7 @@ class Game extends Scene implements GameInterface {
   create(): void {
     this.physics.world.setBounds(0, 0, 3600, 1800);
     this.cameras.main.setBounds(0, 0, 3600, 1800);
-    this.tile = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, 'tile').setOrigin(0);
+    this.tile = this.add.tileSprite(0, 0, 3600, 1800, 'tile').setOrigin(0);
 
     this.player = new Player(this);
     this.player.setCameraFollow();
