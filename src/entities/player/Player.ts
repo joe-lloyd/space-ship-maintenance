@@ -1,41 +1,23 @@
-import GameInterface from '../../scenes/game/GameInterface';
+import GameInterface from '../../scenes/game/GameInterface.types';
 import Mage from '../mage/Mage';
-import MageInterface from '../mage/MageInterface';
-import PlayerInterface from './PlayerInterface';
+import MageInterface from '../mage/MageInterface.types';
+import PlayerInterface from './PlayerInterface.types';
 
 class Player implements PlayerInterface {
-  scene: GameInterface;
-
   character: MageInterface;
 
   speed: number;
 
   constructor(scene: GameInterface) {
-    this.scene = scene;
     this.character = new Mage(scene, 50, 50);
-    this.scene.add.existing(this.character);
-    this.scene.physics.add.existing(this.character);
+    scene.add.existing(this.character);
+    scene.physics.add.existing(this.character);
     this.character.setCollideWorldBounds(true);
     this.speed = 500;
   }
 
   static preload(scene: GameInterface): void {
     Mage.preload(scene);
-  }
-
-  setCameraFollow(): void {
-    this.scene.cameras.main.startFollow(this.character);
-  }
-
-  keyInputs(): void {
-    this.scene.input.keyboard.on('keydown_LEFT', this.moveLeft, this);
-    this.scene.input.keyboard.on('keydown_RIGHT', this.moveRight, this);
-    this.scene.input.keyboard.on('keydown_UP', this.moveUp, this);
-    this.scene.input.keyboard.on('keydown_DOWN', this.moveDown, this);
-    this.scene.input.keyboard.on('keyup_LEFT', this.stopMovingX, this);
-    this.scene.input.keyboard.on('keyup_RIGHT', this.stopMovingX, this);
-    this.scene.input.keyboard.on('keyup_UP', this.stopMovingY, this);
-    this.scene.input.keyboard.on('keyup_DOWN', this.stopMovingY, this);
   }
 
   moveLeft = (): void => {
@@ -60,6 +42,10 @@ class Player implements PlayerInterface {
 
   stopMovingY = (): void => {
     this.character.setVelocityY(0);
+  };
+
+  spellSlotOne = (): void => {
+    this.character.castSpell();
   };
 }
 

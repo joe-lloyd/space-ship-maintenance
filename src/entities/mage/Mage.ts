@@ -1,7 +1,7 @@
 import Character from '../character/Character';
 import MageAsset from '../../assets/images/mage.png';
-import MageInterface from './MageInterface';
-import GameInterface from '../../scenes/game/GameInterface';
+import MageInterface from './MageInterface.types';
+import GameInterface from '../../scenes/game/GameInterface.types';
 
 class Mage extends Character implements MageInterface {
   scene: GameInterface;
