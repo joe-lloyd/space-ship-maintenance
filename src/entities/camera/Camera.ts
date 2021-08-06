@@ -11,6 +11,10 @@ class Camera implements CameraInterface {
   setFollowPlayer(): void {
     this.scene.cameras.main.startFollow(this.scene.player.character);
   }
+
+  setBounds(): void {
+    this.scene.cameras.main.setBounds(0, 0, 3600, 1800);
+  }
 }
 
 export default Camera;

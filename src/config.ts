@@ -11,7 +11,8 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: process.env.DEBUGMODE === 'true',
+      // debug: process.env.DEBUGMODE === 'true',
+      debug: true,
     },
   },
   scene: [Splash, Game, GameOver],

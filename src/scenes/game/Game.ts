@@ -20,9 +20,6 @@ class Game extends Scene implements GameInterface {
     super({
       key: 'Game',
     });
-    this.player = new Player(this);
-    this.camera = new Camera(this);
-    this.inputs = new Inputs(this);
   }
 
   preload(): void {
@@ -32,12 +29,18 @@ class Game extends Scene implements GameInterface {
   }
 
   create(): void {
-    // const map = this.make.tilemap({ key: 'map' });
-    // const tileset = map.addTilesetImage('dungeon-tile-set', 'tiles');
-    // const belowLayer = map.createStaticLayer(0, tileset, 0, 0);
-    // this.cameras.main.setBounds(0, 0, 3600, 1800);
+    const map = this.make.tilemap({ key: 'map' });
+    const tileset = map.addTilesetImage('dungeon-tile-set', 'tiles');
+    const belowLayer = map.createStaticLayer(0, tileset, 0, 0);
+
+    this.player = new Player(this);
+    this.camera = new Camera(this);
+    this.inputs = new Inputs(this);
+
+    // this.add.tileSprite(0, 0, 3600, 1800, 'tile').setOrigin(0);
 
     this.camera.setFollowPlayer();
+    this.camera.setBounds();
     this.inputs.keyInputs();
   }
 }
